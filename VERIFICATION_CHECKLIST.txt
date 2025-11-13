@@ -1,0 +1,67 @@
+AURA LOCAL VERIFICATION CHECKLIST
+==================================
+
+Before uploading to PyPI, verify each step:
+
+□ STEP 1: Dependencies Installed
+  Command: pip install -r requirements.txt
+  Expected: No errors
+
+□ STEP 2: Core Library Works
+  Command: python examples/quick_start.py
+  Expected Output:
+    ✓ Loaded data: 8 rows, 4 columns
+    ✓ Created 15 graphs
+    ✓ Q&A responses for all questions
+    ✓ /outputs/ folder has PNG files
+
+□ STEP 3: Pre-trained Model Verification
+  Check: TensorFlow downloads EfficientNetB7 (first run only)
+  Verify: No training epochs (just inference)
+  Expected: Takes 5-10 seconds per graph
+
+□ STEP 4: Streamlit App Works
+  Command: pip install streamlit && streamlit run app.py
+  Test:
+    - Upload sample_data.csv
+    - Verify 15 graphs display
+    - Ask "What correlations exist?"
+    - Verify answer appears
+
+□ STEP 5: Import Works
+  Command: python -c "from aura import Aura; print(Aura())"
+  Expected: No ImportError
+
+□ STEP 6: Files Present
+  Check these files exist:
+    - aura/__init__.py
+    - aura/core.py
+    - aura/graph_generator.py
+    - aura/feature_extractor.py
+    - aura/qa_engine.py
+    - setup.py
+    - requirements.txt
+    - README.md
+    - LICENSE.txt
+    - examples/quick_start.py
+    - app.py (Streamlit)
+
+□ STEP 7: Build Distribution
+  Command: python -m build
+  Expected: dist/ folder with:
+    - aura_viz-1.0.0-py3-none-any.whl
+    - aura-viz-1.0.0.tar.gz
+
+□ STEP 8: TestPyPI Upload
+  Command: twine upload --repository testpypi dist/*
+  Expected: Success message with test.pypi.org link
+
+□ STEP 9: TestPyPI Installation
+  Command: pip install --index-url https://test.pypi.org/simple/ aura-viz
+  Expected: Package installs, "from aura import Aura" works
+
+□ STEP 10: Production PyPI Upload
+  Command: twine upload dist/*
+  Expected: Success message with pypi.org link
+
+✅ All checks passed? Ready to release!
