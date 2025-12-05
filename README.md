@@ -291,10 +291,10 @@ MIT License - Free for personal and commercial use.
 ## Citation
 
 ```bibtex
-@software{aura2024,
+@software{aura-viz,
   title={AURA: Artificial Understanding and Reasoning Assistant},
-  author={Kumar, S. Hanish and Rajalakshmi, S.},
-  year={2024},
+  author={Kumar, S. Hanish},
+  year={2025},
   url={https://github.com/hanish9193/AURA}
 }
 ```
